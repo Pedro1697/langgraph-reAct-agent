@@ -5,21 +5,18 @@ from langchain_tavily import TavilySearch
 
 load_dotenv()
 
-@tool #the decorator turns it into a langchain tool
 
-def triple(num:float) -> float:
+@tool  # the decorator turns it into a langchain tool
+def triple(num: float) -> float:
     """
-    params:
-        num: a number to triple
+    param num: a number to triple
 
-    returns: 
-        the triple of the input number
+    returns: the triple of the input number
     """
 
-    return float(num)*3
+    return float(num) * 3
 
 
-
-tools = [TavilySearch(max_result=1),triple]
+tools = [TavilySearch(max_result=1), triple]
 
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash").bind_tools(tools)
